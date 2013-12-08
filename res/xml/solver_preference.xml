@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory android:title="Board Version">
+	    
+	    <ListPreference
+	        android:key="@string/versionPref"
+	        android:title="Version Select"
+	        android:summary="Choose which board version you are playing on"
+	        android:entries="@array/entries_list_preference"
+	        android:entryValues="@array/values_list_preference"
+	        android:dialogTitle="Choose Board"
+	         />
+	    
+	</PreferenceCategory>  
+
+</PreferenceScreen>
