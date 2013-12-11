@@ -2,6 +2,7 @@ package com.example.scrabblesolver;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.annotation.TargetApi;
@@ -20,26 +21,30 @@ import com.example.scrabblesolver.VersionConstants;
 	
 	private EditText[] board;
 	
-	private boolean isScrabble;
+	private boolean isScrabble;// = true;
+	private String dictionary;// = "scrabL";
 	
-	private int rcPreferences = 12;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
         
+        //intent for
+        if(savedInstanceState != null){
+        	
+        }
+        
         board = new EditText[225];
-
         
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         
-        Resources res = getResources();
-        
-        String tmp = prefs.getString(res.getString(R.string.versionPref), "is_scrabble");
+        String tmp = prefs.getString("versionPref", "is_words");
         isScrabble = tmp.equals("is_scrabble");
         
-        Log.w(VersionConstants.TAG, "tmp = "+ tmp + ", "+isScrabble);
+        dictionary = prefs.getString("dictionaryPref", "scrabL");
+        
+        Log.w(VersionConstants.TAG, "scrabble = "+ isScrabble);
+        Log.w(VersionConstants.TAG, "dictionary = "+dictionary);
         
         //load board
         generateBoard();
@@ -50,13 +55,19 @@ import com.example.scrabblesolver.VersionConstants;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.settings, menu);
+        getMenuInflater().inflate(R.menu.board, menu);
         return true;
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
     	switch(item.getItemId()){
+    	case R.id.action_solve:
+    		String boardVals[] = createBoard();
+    		return true;
+    	case R.id.action_clear:
+    		clearBoard();
+    		return true;
     	case R.id.action_settings:
     		//startActivityForResult(new Intent(this, SettingsActivity.class), rcPreferences);
     		startActivity(new Intent(this, SettingsActivity.class));
@@ -72,17 +83,27 @@ import com.example.scrabblesolver.VersionConstants;
     	super.onResume();
     	
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    	Resources res = getResources();
     	
-    	boolean newBoard = prefs.getString(res.getString(R.string.versionPref), "is_scrabble").equals("is_scrabble");
+    	boolean newBoard = prefs.getString("versionPref", "is_scrabble").equals("is_scrabble");
+    	String newDict = prefs.getString("dictionaryPref", "scrabL");
     	
     	Log.w(VersionConstants.TAG, "newBoard != isScrabble, "+(newBoard != isScrabble));
     	
     	if(newBoard != isScrabble){
     		Log.w(VersionConstants.TAG, "Changing board");
-    		boardLayout();
     		isScrabble = newBoard;
+    		boardLayout();
+    		
     	}
+    	
+    	if(newDict != dictionary){
+    		dictionary = newDict;
+    		//change dictionary root
+    	}
+    	
+        Log.w(VersionConstants.TAG, "scrabble = "+ newBoard);
+        Log.w(VersionConstants.TAG, "dictionary = "+dictionary);
+
     }
     
     private void generateBoard(){
@@ -315,6 +336,24 @@ import com.example.scrabblesolver.VersionConstants;
 
     }
     
+    private String[] createBoard(){
+    	String[] tmp = new String[225];
+    	
+    	for(int i = 0; i<225; i++){
+    		tmp[i] = board[i].getText().toString();
+    		
+    		Log.w(VersionConstants.TAG, "board["+i+"] = "+ tmp[i]);
+    	}
+    	
+    	return tmp;
+    }
+    
+    private void clearBoard(){
+    	for(int i = 0; i<225; i++){
+    		board[i].setText("");
+    	}
+    }
+    
     private void boardLayout(){
     	int boardLayout[];
     	if(isScrabble){
@@ -345,7 +384,7 @@ import com.example.scrabblesolver.VersionConstants;
     			board[i].setBackgroundColor(Color.parseColor("#ED2626"));
     			break;
     		case 5:
-    			board[i].setBackgroundColor(Color.RED);
+    			board[i].setHint("X");
     			break;
     		default:
     			board[i].setBackgroundColor(Color.parseColor("#B8DEDE"));

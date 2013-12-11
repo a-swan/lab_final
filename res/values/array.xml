@@ -5,7 +5,20 @@
         <item >Scrabble</item>
     </string-array>
     <string-array name="values_list_preference">
-        <item >is_scrabble</item>
         <item >is_words</item>
+        <item >is_scrabble</item>
+    </string-array>
+    
+    <string-array name="entries_dictionaries">
+        <item >Scrabble (Large)</item>
+        <item >Scrabble (Small)</item>
+        <item >Words With Friends (Large)</item>
+        <item >Words With Friends (Small)</item>
+    </string-array>
+    <string-array name="values_dictionaries">
+        <item >scrabL</item>
+        <item >scrabS</item>
+        <item >wwfL</item>
+        <item >wwfS</item>
     </string-array>
 </resources>

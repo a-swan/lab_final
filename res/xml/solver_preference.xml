@@ -13,5 +13,18 @@
 	         />
 	    
 	</PreferenceCategory>  
+	
+    <PreferenceCategory android:title="Dictionary">
+        
+        <ListPreference
+            android:key="@string/dictionaryPref"
+            android:title="Dictionary Select"
+            android:summary="Choose which dictionary you are playing with"
+            android:entries="@array/entries_dictionaries"
+            android:entryValues="@array/values_dictionaries"
+            android:dialogTitle="Choose Dictionary"
+            />
+        
+    </PreferenceCategory>
 
 </PreferenceScreen>

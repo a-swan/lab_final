@@ -8,6 +8,8 @@
     <string name="scrabble_ch">Scrabble</string>
     <string name="words_ch">Words With Friends</string>
     <string name="versionPref">versionPref</string>
+    <string name="dictionaryPref">dictionaryPref</string>
+    <string name="hand" />
     <string name="cell0_0" />
     <string name="cell0_1" />
     <string name="cell0_2" />
@@ -235,6 +237,10 @@
     <string name="cell14_14" />
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="version_default">is_scrabble</string>
+    <string name="dic_default">scrabL</string>
+    <string name="action_solve">Solve!</string>
+    <string name="action_clear">Clear</string>
+    
     
 
 </resources>
