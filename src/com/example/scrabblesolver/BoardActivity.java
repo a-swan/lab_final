@@ -1,9 +1,17 @@
 package com.example.scrabblesolver;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+/////////////////
+import android.app.ListActivity;
+import android.widget.ListView;
+import android.widget.ArrayAdapter;
+///////////////
+
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -17,15 +25,22 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import com.example.scrabblesolver.VersionConstants;
 
+
 @TargetApi(Build.VERSION_CODES.HONEYCOMB) public class BoardActivity extends Activity {
 	
 	private EditText[] board;
 	
 	private boolean isScrabble;// = true;
 	private String dictionary;// = "scrabL";
-	
+	///////
+	private Dawg dawg;
+	private List<String> wordList = new ArrayList<String>();
+	private EditText letters;// = (EditText)findViewById(R.id.hand);
+	private ArrayAdapter<String> listAdapter;
+	///////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
         
@@ -33,7 +48,11 @@ import com.example.scrabblesolver.VersionConstants;
         if(savedInstanceState != null){
         	
         }
-        
+        //////////////////////////////////
+        //listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, wordList);
+        //setListAdapter(listAdapter);
+        //listAdapter.notifyDataSetChanged();
+        //////////////////////////////////
         board = new EditText[225];
         
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -64,6 +83,37 @@ import com.example.scrabblesolver.VersionConstants;
     	switch(item.getItemId()){
     	case R.id.action_solve:
     		String boardVals[] = createBoard();
+    		String CurrentLetters = ((EditText)findViewById(R.id.hand)).getText().toString();
+    		Log.w(VersionConstants.TAG, "letters: "+CurrentLetters);
+            try {
+                dawg = new Dawg(this, wordList);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                wordList.clear();
+                HashMap<Integer, List<String>> wordMap = dawg.anagram(CurrentLetters);
+                
+                List<Integer> set = new ArrayList<Integer>(wordMap.keySet());
+                //Log.w(VersionConstants.TAG, "set: "+set);
+                Collections.sort(set);
+                for(Integer i : set) {
+                    wordList.addAll(wordMap.get(i));
+                    String [] wordArray = wordList.toArray(new String[wordList.size()]);
+                    Log.w(VersionConstants.TAG, "words: "+wordMap.get(i).toString());
+                }
+
+                if(wordList.isEmpty()) {
+                    wordList.add("No matches found!");
+                    Log.w(VersionConstants.TAG, "No words found");
+                    //letters.setText("none");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    		
+
     		return true;
     	case R.id.action_clear:
     		clearBoard();
@@ -87,7 +137,7 @@ import com.example.scrabblesolver.VersionConstants;
     	boolean newBoard = prefs.getString("versionPref", "is_scrabble").equals("is_scrabble");
     	String newDict = prefs.getString("dictionaryPref", "scrabL");
     	
-    	Log.w(VersionConstants.TAG, "newBoard != isScrabble, "+(newBoard != isScrabble));
+    	//Log.w(VersionConstants.TAG, "newBoard != isScrabble, "+(newBoard != isScrabble));
     	
     	if(newBoard != isScrabble){
     		Log.w(VersionConstants.TAG, "Changing board");
@@ -342,7 +392,7 @@ import com.example.scrabblesolver.VersionConstants;
     	for(int i = 0; i<225; i++){
     		tmp[i] = board[i].getText().toString();
     		
-    		Log.w(VersionConstants.TAG, "board["+i+"] = "+ tmp[i]);
+    		//Log.w(VersionConstants.TAG, "board["+i+"] = "+ tmp[i]);
     	}
     	
     	return tmp;
