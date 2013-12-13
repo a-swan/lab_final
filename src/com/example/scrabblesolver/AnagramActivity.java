@@ -12,15 +12,18 @@ import java.util.TreeMap;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -70,7 +73,17 @@ public class AnagramActivity extends Activity {
             }
 		});
 	}
-
+	 public boolean onOptionsItemSelected(MenuItem item){
+	    	switch(item.getItemId()){
+	    	case R.id.action_settings:
+	    		//startActivityForResult(new Intent(this, SettingsActivity.class), rcPreferences);
+	    		startActivity(new Intent(this, SettingsActivity.class));
+	    		return true;
+	    		
+	    	default:
+	    		return false;
+	    	}
+	    }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

@@ -10,8 +10,8 @@
     </string-array>
     
     <string-array name="entries_dictionaries">
-        <item>Scrabble</item>
-        <item>Words With Friends</item>
+        <item>OSPD (Scrabble)</item>
+        <item>Enable (Words With Friends)</item>
     </string-array>
     <string-array name="values_dictionaries">
         <item >scrabble</item>
