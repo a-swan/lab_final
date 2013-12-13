@@ -44,10 +44,6 @@ import com.example.scrabblesolver.VersionConstants;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board);
         
-        //intent for
-        if(savedInstanceState != null){
-        	
-        }
         //////////////////////////////////
         //listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, wordList);
         //setListAdapter(listAdapter);
@@ -60,7 +56,7 @@ import com.example.scrabblesolver.VersionConstants;
         String tmp = prefs.getString("versionPref", "is_words");
         isScrabble = tmp.equals("is_scrabble");
         
-        dictionary = prefs.getString("dictionaryPref", "scrabL");
+        dictionary = prefs.getString("dictionaryPref", "scrabble");
         
         Log.w(VersionConstants.TAG, "scrabble = "+ isScrabble);
         Log.w(VersionConstants.TAG, "dictionary = "+dictionary);
@@ -86,7 +82,7 @@ import com.example.scrabblesolver.VersionConstants;
     		String CurrentLetters = ((EditText)findViewById(R.id.hand)).getText().toString();
     		Log.w(VersionConstants.TAG, "letters: "+CurrentLetters);
             try {
-                dawg = new Dawg(this, wordList);
+                dawg = new Dawg(this, wordList, dictionary);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -116,6 +112,7 @@ import com.example.scrabblesolver.VersionConstants;
             Intent solveActivity = new Intent(this, AnagramActivity.class);
             solveActivity.putExtra("hand", ((EditText)findViewById(R.id.hand)).getText().toString());
             solveActivity.putStringArrayListExtra("anagrams", (ArrayList<String>)wordList);
+            solveActivity.putExtra("version", isScrabble);
             
             startActivity(solveActivity);
             

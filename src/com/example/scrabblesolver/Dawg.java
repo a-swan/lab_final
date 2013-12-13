@@ -29,7 +29,8 @@ public class Dawg {
 
     private int[] theDawgArray;
 
-    public Dawg(Context context, List<String> list) throws Exception {
+    public Dawg(Context context, List<String> list, String dic) throws Exception {
+    	Log.w(VersionConstants.TAG, "dic: " + dic);
         this.wordList = list;
         //DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(getClass().getResourceAsStream("Traditional_Dawg_For_Word-List.dat")));
         DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(context.getAssets().open("OSPD_scrabble.dat")));
