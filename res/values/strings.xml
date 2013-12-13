@@ -238,7 +238,9 @@
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="version_default">is_scrabble</string>
     <string name="dic_default">scrabL</string>
-    <string name="action_solve">Solve!</string>
+    <string name="action_solve">Solve</string>
+    <string name="action_score">Score</string>
+    <string name="score">Click SCORE to update the total board score.</string>
     <string name="action_clear">Clear</string>
     <string name="title_activity_anagram">AnagramActivity</string>
         <string name="word_length">Word Length</string>

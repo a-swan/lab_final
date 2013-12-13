@@ -8,6 +8,7 @@ import java.util.List;
 import android.app.ListActivity;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 ///////////////
 
 import android.os.Build;
@@ -35,8 +36,8 @@ import com.example.scrabblesolver.VersionConstants;
 	///////
 	private Dawg dawg;
 	private List<String> wordList = new ArrayList<String>();
-	private EditText letters;// = (EditText)findViewById(R.id.hand);
-	private ArrayAdapter<String> listAdapter;
+	//private EditText letters;// = (EditText)findViewById(R.id.hand);
+	//private ArrayAdapter<String> listAdapter;
 	///////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +125,61 @@ import com.example.scrabblesolver.VersionConstants;
     		//startActivityForResult(new Intent(this, SettingsActivity.class), rcPreferences);
     		startActivity(new Intent(this, SettingsActivity.class));
     		return true;
-    		
+    	case R.id.action_score:
+    		TextView ScoreTextView = (TextView) findViewById(R.id.score);
+    		///////////////
+        	String[] tmp = new String[225];
+        	int boardLayout[];
+        	if(isScrabble){
+        		boardLayout = VersionConstants.SCRABBLE_BOARD;
+        		Log.w(VersionConstants.TAG, "is_scrabble");
+        	}
+        	else{
+        		boardLayout = VersionConstants.WORDS_BOARD;
+        		Log.w(VersionConstants.TAG, "isnt_scrabble");
+        	}
+    		int[] vals;
+    		if(isScrabble){
+    			vals = VersionConstants.SCRABBLE_VALS;
+    		}
+    		else{
+    			vals = VersionConstants.WORDS_VALS;
+    		}
+        	int total=0;
+        	for(int i = 0; i<225; i++){
+        		tmp[i] = board[i].getText().toString();
+        		String tmpStr = tmp[i];
+        		Log.w(VersionConstants.TAG, "total:"+ total);
+        		if(tmpStr.equals("A")){total+=(vals[0]*boardLayout[i]);}
+        		else if(tmpStr.equals("B")){total+=(vals[1]*boardLayout[i]);}
+        		else if(tmpStr.equals("C")){total+=(vals[2]*boardLayout[i]);}
+        		else if(tmpStr.equals("D")){total+=(vals[3]*boardLayout[i]);}
+        		else if(tmpStr.equals("E")){total+=(vals[4]*boardLayout[i]);}
+        		else if(tmpStr.equals("F")){total+=(vals[5]*boardLayout[i]);}
+        		else if(tmpStr.equals("G")){total+=(vals[6]*boardLayout[i]);}
+        		else if(tmpStr.equals("H")){total+=(vals[7]*boardLayout[i]);}
+        		else if(tmpStr.equals("I")){total+=(vals[8]*boardLayout[i]);}
+        		else if(tmpStr.equals("J")){total+=(vals[9]*boardLayout[i]);}
+        		else if(tmpStr.equals("K")){total+=(vals[10]*boardLayout[i]);}
+        		else if(tmpStr.equals("L")){total+=(vals[11]*boardLayout[i]);}
+        		else if(tmpStr.equals("M")){total+=(vals[12]*boardLayout[i]);}
+        		else if(tmpStr.equals("N")){total+=(vals[13]*boardLayout[i]);}
+        		else if(tmpStr.equals("O")){total+=(vals[14]*boardLayout[i]);}
+        		else if(tmpStr.equals("P")){total+=(vals[15]*boardLayout[i]);}
+        		else if(tmpStr.equals("Q")){total+=(vals[16]*boardLayout[i]);}
+        		else if(tmpStr.equals("R")){total+=(vals[17]*boardLayout[i]);}
+        		else if(tmpStr.equals("S")){total+=(vals[18]*boardLayout[i]);}
+        		else if(tmpStr.equals("T")){total+=(vals[19]*boardLayout[i]);}
+        		else if(tmpStr.equals("U")){total+=(vals[20]*boardLayout[i]);}
+        		else if(tmpStr.equals("V")){total+=(vals[21]*boardLayout[i]);}
+        		else if(tmpStr.equals("W")){total+=(vals[22]*boardLayout[i]);}
+        		else if(tmpStr.equals("X")){total+=(vals[23]*boardLayout[i]);}
+        		else if(tmpStr.equals("Y")){total+=(vals[24]*boardLayout[i]);}
+        		else if(tmpStr.equals("Z")){total+=(vals[25]*boardLayout[i]);}
+
+        	}
+        	ScoreTextView.setText("Total Board Score: "+total);
+    		///////////////
     	default:
     		return false;
     	}

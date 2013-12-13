@@ -338,8 +338,25 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/HorizontalScrollView1"
         android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" 
+            android:text="@string/score" />
     
-        <EditText android:id="@+id/hand" android:layout_marginTop="40dp" android:text="@string/hand" android:layout_width="280dp" android:layout_height="wrap_content" android:textSize="50sp" android:gravity="center" android:inputType="textCapCharacters|textNoSuggestions" android:maxLength="7" android:background="@drawable/cell_normal">
+        <EditText 
+            android:id="@+id/hand" 
+            android:layout_marginTop="40dp" 
+            android:text="@string/hand" 
+            android:layout_width="280dp" 
+            android:layout_height="wrap_content" 
+            android:textSize="40sp" 
+            android:gravity="center" 
+            android:inputType="textCapCharacters|textNoSuggestions" 
+            android:maxLength="7" 
+            android:background="@drawable/cell_normal">
 
             <requestFocus />
 
