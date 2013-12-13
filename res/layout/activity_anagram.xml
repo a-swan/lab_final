@@ -16,19 +16,19 @@
         android:layout_alignParentTop="true" >
 
         <RadioButton
-            android:id="@+id/radio0"
+            android:id="@+id/wordlen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="RadioButton" />
+            android:text="@string/word_length" />
         
         <RadioButton
-        	android:id="@+id/radio1"
+        	android:id="@+id/wordval"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_alignLeft="@+id/radioGroup1"
        	 	android:layout_below="@+id/radioGroup1"
-        	android:text="RadioButton" />
+        	android:text="@string/word_value" />
 
     </RadioGroup>
 

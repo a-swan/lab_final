@@ -241,5 +241,7 @@
     <string name="action_solve">Solve!</string>
     <string name="action_clear">Clear</string>
     <string name="title_activity_anagram">AnagramActivity</string>
+        <string name="word_length">Word Length</string>
+    <string name="word_value">Word Value</string>
 
 </resources>
