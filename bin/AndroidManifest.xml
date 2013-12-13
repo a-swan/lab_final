@@ -17,6 +17,7 @@
             android:name="com.example.scrabblesolver.BoardActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
+            android:windowSoftInputMode="stateVisible|adjustResize"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
