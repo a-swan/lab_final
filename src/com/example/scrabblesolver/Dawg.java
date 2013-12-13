@@ -1,3 +1,4 @@
+//Derived from http://pages.pathcom.com/~vadco/dawg.html
 package com.example.scrabblesolver;
 
 import android.content.Context;
