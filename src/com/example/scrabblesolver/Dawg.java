@@ -33,7 +33,13 @@ public class Dawg {
     	Log.w(VersionConstants.TAG, "dic: " + dic);
         this.wordList = list;
         //DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(getClass().getResourceAsStream("Traditional_Dawg_For_Word-List.dat")));
-        DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(context.getAssets().open("OSPD_scrabble.dat")));
+        DataInputStream dawgDataFile;
+        if(dic.equals("scrabble")){
+        	dawgDataFile = new DataInputStream(new BufferedInputStream(context.getAssets().open("OSPD_scrabble.dat")));
+        }
+        else{
+        	dawgDataFile = new DataInputStream(new BufferedInputStream(context.getAssets().open("ENABLE_words_with_friends.dat")));
+        }
         numberOfNodes = endianConversion(dawgDataFile.readInt());
         theDawgArray = new int[numberOfNodes];
 

@@ -150,33 +150,34 @@ import com.example.scrabblesolver.VersionConstants;
         		tmp[i] = board[i].getText().toString();
         		String tmpStr = tmp[i];
         		Log.w(VersionConstants.TAG, "total:"+ total);
-        		if(tmpStr.equals("A")){total+=(vals[0]*boardLayout[i]);}
-        		else if(tmpStr.equals("B")){total+=(vals[1]*boardLayout[i]);}
-        		else if(tmpStr.equals("C")){total+=(vals[2]*boardLayout[i]);}
-        		else if(tmpStr.equals("D")){total+=(vals[3]*boardLayout[i]);}
-        		else if(tmpStr.equals("E")){total+=(vals[4]*boardLayout[i]);}
-        		else if(tmpStr.equals("F")){total+=(vals[5]*boardLayout[i]);}
-        		else if(tmpStr.equals("G")){total+=(vals[6]*boardLayout[i]);}
-        		else if(tmpStr.equals("H")){total+=(vals[7]*boardLayout[i]);}
-        		else if(tmpStr.equals("I")){total+=(vals[8]*boardLayout[i]);}
-        		else if(tmpStr.equals("J")){total+=(vals[9]*boardLayout[i]);}
-        		else if(tmpStr.equals("K")){total+=(vals[10]*boardLayout[i]);}
-        		else if(tmpStr.equals("L")){total+=(vals[11]*boardLayout[i]);}
-        		else if(tmpStr.equals("M")){total+=(vals[12]*boardLayout[i]);}
-        		else if(tmpStr.equals("N")){total+=(vals[13]*boardLayout[i]);}
-        		else if(tmpStr.equals("O")){total+=(vals[14]*boardLayout[i]);}
-        		else if(tmpStr.equals("P")){total+=(vals[15]*boardLayout[i]);}
-        		else if(tmpStr.equals("Q")){total+=(vals[16]*boardLayout[i]);}
-        		else if(tmpStr.equals("R")){total+=(vals[17]*boardLayout[i]);}
-        		else if(tmpStr.equals("S")){total+=(vals[18]*boardLayout[i]);}
-        		else if(tmpStr.equals("T")){total+=(vals[19]*boardLayout[i]);}
-        		else if(tmpStr.equals("U")){total+=(vals[20]*boardLayout[i]);}
-        		else if(tmpStr.equals("V")){total+=(vals[21]*boardLayout[i]);}
-        		else if(tmpStr.equals("W")){total+=(vals[22]*boardLayout[i]);}
-        		else if(tmpStr.equals("X")){total+=(vals[23]*boardLayout[i]);}
-        		else if(tmpStr.equals("Y")){total+=(vals[24]*boardLayout[i]);}
-        		else if(tmpStr.equals("Z")){total+=(vals[25]*boardLayout[i]);}
-
+        		if(tmpStr.equals("A")){total+=(vals[0]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("B")){total+=(vals[1]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("C")){total+=(vals[2]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("D")){total+=(vals[3]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("E")){total+=(vals[4]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("F")){total+=(vals[5]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("G")){total+=(vals[6]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("H")){total+=(vals[7]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("I")){total+=(vals[8]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("J")){total+=(vals[9]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("K")){total+=(vals[10]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("L")){total+=(vals[11]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("M")){total+=(vals[12]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("N")){total+=(vals[13]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("O")){total+=(vals[14]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("P")){total+=(vals[15]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("Q")){total+=(vals[16]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("R")){total+=(vals[17]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("S")){total+=(vals[18]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("T")){total+=(vals[19]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("U")){total+=(vals[20]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("V")){total+=(vals[21]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("W")){total+=(vals[22]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("X")){total+=(vals[23]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("Y")){total+=(vals[24]*multiplier(boardLayout[i]));}
+        		else if(tmpStr.equals("Z")){total+=(vals[25]*multiplier(boardLayout[i]));}
+        		
+        		
         	}
         	ScoreTextView.setText("Total Board Score: "+total);
     		///////////////
@@ -484,10 +485,10 @@ import com.example.scrabblesolver.VersionConstants;
     			board[i].setBackgroundColor(Color.parseColor("#B8DEDE"));
     			break;
     		case 2:
-    			board[i].setBackgroundColor(Color.parseColor("#DB8181"));
+    			board[i].setBackgroundColor(Color.parseColor("#25A1A1"));
     			break;
     		case 3:
-    			board[i].setBackgroundColor(Color.parseColor("#25A1A1"));
+    			board[i].setBackgroundColor(Color.parseColor("#DB8181"));
     			break;
     		case 4:
     			board[i].setBackgroundColor(Color.parseColor("#ED2626"));
@@ -510,6 +511,21 @@ import com.example.scrabblesolver.VersionConstants;
     	}
     	
     	return true;
+    }
+    
+    private int multiplier(int color){
+    	switch(color){
+    	case 1:
+    		//double letter
+    		return 2;
+    	case 3:
+    		//triple letter
+    		return 3;
+    	default:
+    		//other
+    		return 1;
+    	}
+    	
     }
     
 }
