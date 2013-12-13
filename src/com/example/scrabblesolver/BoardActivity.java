@@ -77,6 +77,7 @@ import com.example.scrabblesolver.VersionConstants;
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
+    	TextView ScoreTextView = (TextView) findViewById(R.id.score);
     	switch(item.getItemId()){
     	case R.id.action_solve:
     		String boardVals[] = createBoard();
@@ -120,13 +121,14 @@ import com.example.scrabblesolver.VersionConstants;
     		return true;
     	case R.id.action_clear:
     		clearBoard();
+    		ScoreTextView.setText("Click SCORE to update the total board score.");
     		return true;
     	case R.id.action_settings:
     		//startActivityForResult(new Intent(this, SettingsActivity.class), rcPreferences);
     		startActivity(new Intent(this, SettingsActivity.class));
     		return true;
     	case R.id.action_score:
-    		TextView ScoreTextView = (TextView) findViewById(R.id.score);
+    		
     		///////////////
         	String[] tmp = new String[225];
         	int boardLayout[];
