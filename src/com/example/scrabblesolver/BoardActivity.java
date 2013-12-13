@@ -113,7 +113,12 @@ import com.example.scrabblesolver.VersionConstants;
                 e.printStackTrace();
             }
     		
-
+            Intent solveActivity = new Intent(this, AnagramActivity.class);
+            solveActivity.putExtra("hand", ((EditText)findViewById(R.id.hand)).getText().toString());
+            solveActivity.putStringArrayListExtra("anagrams", (ArrayList<String>)wordList);
+            
+            startActivity(solveActivity);
+            
     		return true;
     	case R.id.action_clear:
     		clearBoard();
@@ -402,6 +407,8 @@ import com.example.scrabblesolver.VersionConstants;
     	for(int i = 0; i<225; i++){
     		board[i].setText("");
     	}
+    	
+    	((EditText)findViewById(R.id.hand)).setText("");
     }
     
     private void boardLayout(){
@@ -441,6 +448,16 @@ import com.example.scrabblesolver.VersionConstants;
     			break;
     		}
     	}
+    }
+    
+    private boolean emptyBoard(){
+    	for(int i = 0; i<225; i++){
+    		if(board[i].getText().toString() != ""){
+    			return false;
+    		}
+    	}
+    	
+    	return true;
     }
     
 }

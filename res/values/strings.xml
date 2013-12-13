@@ -240,7 +240,6 @@
     <string name="dic_default">scrabL</string>
     <string name="action_solve">Solve!</string>
     <string name="action_clear">Clear</string>
-    
-    
+    <string name="title_activity_anagram">AnagramActivity</string>
 
 </resources>
