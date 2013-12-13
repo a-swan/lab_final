@@ -15,3 +15,5 @@ Requirements:
 Optional Features: 
 	-Use a DAWG (directed acyclic word graph) for storing the dictionaries. 
 	-Solve a complex board using a 100,000+ dictionary (TWL) in less than 1 second. 
+
+DAWG solution derived from: http://pages.pathcom.com/~vadco/dawg.html
