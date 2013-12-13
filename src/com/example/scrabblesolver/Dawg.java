@@ -32,7 +32,7 @@ public class Dawg {
     public Dawg(Context context, List<String> list) throws Exception {
         this.wordList = list;
         //DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(getClass().getResourceAsStream("Traditional_Dawg_For_Word-List.dat")));
-        DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(context.getAssets().open("Traditional_Dawg_For_Word-List.dat")));
+        DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(context.getAssets().open("OSPD_scrabble.dat")));
         numberOfNodes = endianConversion(dawgDataFile.readInt());
         theDawgArray = new int[numberOfNodes];
 
